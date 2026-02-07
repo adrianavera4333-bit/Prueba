@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mónica 💘</title>
+
+<style>
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(#ff758c,#ffb199);
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  border-radius:18px;
+  text-align:center;
+  width:90%;
+  max-width:350px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.25);
+}
+
+img{
+  width:100%;
+  border-radius:12px;
+  margin-bottom:10px;
+}
+
+h2{
+  color:#ff4d6d;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  font-size:18px;
+  border:none;
+  border-radius:12px;
+}
+
+#yes{
+  background:#ff4d6d;
+  color:white;
+}
+
+#no{
+  background:#ddd;
+  position:relative;
+}
+
+#final{
+  display:none;
+  margin-top:15px;
+  font-size:20px;
+  color:#ff4d6d;
+}
+
+/* corazones */
+.heart{
+  position:absolute;
+  font-size:22px;
+  animation:float 4s linear infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(0);}
+  100%{transform:translateY(-110vh);}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+
+<img src="https://i.imgur.com/3QZQZ7N.png">
+
+<h2>💘 Mónica 💘</h2>
+<p>¿Quieres ser mi San Valentín? 😳</p>
+
+<button id="yes">SÍ 💖</button>
+<button id="no">NO 🙄</button>
+
+<div id="final">🎉 ¡Ganaste! Ahora eres oficialmente mi San Valentín 💕</div>
+
+</div>
+
+<script>
+const music=document.getElementById("music");
+document.body.addEventListener("click",()=>{ music.play(); });
+
+const noBtn=document.getElementById("no");
+const yesBtn=document.getElementById("yes");
+const final=document.getElementById("final");
+
+const frases=[
+"Error 😵",
+"No bloqueado 🔒",
+"Solo puedes decir SÍ 😌",
+"Intenta otra vez 😂",
+"Destino: SÍ 💘"
+];
+
+noBtn.addEventListener("touchstart",()=>{
+  const x=Math.random()*200-100;
+  const y=Math.random()*200-100;
+  noBtn.style.transform=`translate(${x}px,${y}px)`;
+  noBtn.innerText=frases[Math.floor(Math.random()*frases.length)];
+});
+
+yesBtn.addEventListener("click",()=>{
+  final.style.display="block";
+  corazones();
+});
+
+function corazones(){
+  setInterval(()=>{
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💖";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+15)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),4000);
+  },250);
+}
+</script>
+
+</body>
+</html>
